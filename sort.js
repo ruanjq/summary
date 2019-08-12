@@ -1,5 +1,23 @@
+
+
 function quickSort(arr){
-     
+ 
+    if(arr.length <= 1){
+        return arr;
+    }
+    let middle = Math.ceil((arr.length/2));
+    let temp = arr.splice(middle, 1)[0];;
+    let left = [];
+    let right = [];
+    for(let i = 0; i < arr.length; i++){
+        if(temp > arr[i]){
+            left.push(arr[i]);
+        } else{
+            right.push(arr[i]);
+        }
+    }
+    // console.log(arr);
+    return quickSort(left).concat([temp], quickSort(right));
 }
 
 
@@ -51,11 +69,12 @@ function bubbleSort(arr){
 }
 
 
-var arr = [6,4,5,2,1,7,9,8,3];
+var arr = [8,7,3];
 // console.log(selectSort(arr));
 // console.log(bubbleSort(arr));
-console.log(insetSort(arr));
-// console.log(quickSort(arr));
+// console.log(insetSort(arr));
+console.log(quickSort(arr));
+// console.log(1212121);
 
 
 function sum(){

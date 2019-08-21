@@ -42,6 +42,13 @@
             timeCallback.mycall(Person,"x","y","z");
         },1000);
 
+
+        var callback = function(){
+            console.log(this);
+        }
+        setTimeout(callback.bind(Person),3000);
+        
+
     </script>
 </body>
 </html>

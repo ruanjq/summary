@@ -6,7 +6,6 @@ let less = require("./config_less");
 let template = require("./config_template");
 let sprite = require("./config_sprite");
 let handler = require("./config_hanlder");
-let socket = require("./config_socket");
 // 前端项目根目录文件夹名称，如存在其他多语言模板，则扩展这个数组对象，往数组添加文件夹路径
 
 const WATCHER_INTERVAL = 500;
@@ -146,6 +145,7 @@ gulp.task('default', () => {
     handler.info("~~~~~~~~~~~~~~~~~~~~~~~~");
     handler.info("当前进入gulp dev 开发模式");
     handler.info("~~~~~~~~~~~~~~~~~~~~~~~~");
+    let socket = require("./config_socket");
     socket();
     for(let cp in config_path){
         let item = config_path[cp];

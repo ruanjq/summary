@@ -137,7 +137,7 @@ module.exports = {
         console.log(chalk.bold.green(info));
     },
     success:() => {
-        // 通知客户端编译成功，删除页面错误提示信息
+        // 监听客户端编译成功，删除页面错误提示信息
         if (global.socket_client && has_error) {
             has_error = false;
             global.socket_client.emit('gulpSuccess', { msg: "编译成功" });

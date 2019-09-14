@@ -15,7 +15,7 @@ let path = require("path");
 const SKIN_ARR = ['skin2'];
 let skin2_dir = path.resolve(__dirname, "../", SKIN_ARR[0]);
 let config_path = {
-    skin2_base: { // skin2 项目基础文件路径文件配置
+    skin2: { // skin2 项目基础文件路径文件配置
         script: {
             source: [
                 path.resolve(skin2_dir, 'dist/js/**/*.js')

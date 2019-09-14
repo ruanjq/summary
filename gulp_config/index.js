@@ -1,12 +1,12 @@
 let gulp = require("gulp");
 let del = require('del');
-let config_path = require("./config_path");
 let script = require("././config_script");
 let less = require("./config_less");
 let template = require("./config_template");
 let sprite = require("./config_sprite");
 let handler = require("./config_hanlder");
-// 前端项目根目录文件夹名称，如存在其他多语言模板，则扩展这个数组对象，往数组添加文件夹路径
+let configProcess = require("./config_process");
+let configPathPromise = require("./config_path_filter");
 
 const WATCHER_INTERVAL = 500;
 let watcher = (path_params) => {
@@ -53,7 +53,12 @@ let watcher = (path_params) => {
     }
 }
 
-let buildTask = () => {
+/**
+ * 
+ * @param {*} buildParams   npm run build 参数 
+ *                          如 npm run build m=skin3_en t=less
+ */
+let buildTask = (config_path) => {
     let build_queue = [];
     for(let cp in config_path){
         let item = config_path[cp];
@@ -103,7 +108,7 @@ let buildTask = () => {
     });
 }
 
-let spriteTask = (folderName) => {
+let spriteTask = (folderName,config_path) => {
     let spriteQueue = [];
     for(let cp in config_path){
         let item = config_path[cp];
@@ -141,27 +146,30 @@ let spriteTask = (folderName) => {
     })
 }
 
-gulp.task('default', () => {
+
+if(configProcess.IS_DEV){
     handler.info("~~~~~~~~~~~~~~~~~~~~~~~~");
     handler.info("当前进入gulp dev 开发模式");
     handler.info("~~~~~~~~~~~~~~~~~~~~~~~~");
     let socket = require("./config_socket");
     socket();
-    for(let cp in config_path){
-        let item = config_path[cp];
-        watcher(item);
-    }
-});
-
-// sprite 命令单独编译，不自动监听，防止性能太卡
-gulp.task('sprite', () => {
+    configPathPromise().then(config => {
+        for(let cp in config){
+            let item = config[cp];
+            watcher(item);
+        }
+    })
+} else if(configProcess.IS_TASK_SPRITE){ 
+    // sprite 命令单独编译，不自动监听，防止性能太卡
     let pa_length = process.argv.length;
-    if(pa_length != 5){
+    if(pa_length != 3){
         handler.error(`Sprite Error,请在命令行中传递文件夹参数,`,"");
         return;
     }
     let folderName = process.argv.pop();
-    spriteTask(folderName).then(() => {
+    configPathPromise().then(config => {
+        return spriteTask(folderName,config);
+    }).then(() => {
         handler.info("~~~~~~~~~~~~~~~~~~~~~~~~");
         handler.info(`恭喜您!,/${folderName} 文件夹下的,sprite 编译成功!!!`);
         handler.info("~~~~~~~~~~~~~~~~~~~~~~~~");
@@ -170,19 +178,23 @@ gulp.task('sprite', () => {
         handler.error(`Sprite Error , 编译失败`, err);
         process.exit();
     });
-});
-
-gulp.task('build', () => {
+} else if(configProcess.IS_PROD){
     handler.info("~~~~~~~~~~~~~~~~~~~~~~~~");
     handler.info("当前进入gulp Prod build 编译模式");
     handler.info("~~~~~~~~~~~~~~~~~~~~~~~~");
-    buildTask().then(() => {
+    configPathPromise().then((config) => {
+
+        return buildTask(config);
+    }).then(() => {
         handler.info("~~~~~~~~~~~~~~~~~~~~~~~~");
         handler.info("恭喜,所有任务编译成功!!!");
         handler.info("~~~~~~~~~~~~~~~~~~~~~~~~");
         process.exit();
     }).catch(err => {
-        handler.error(`编译失败,请检查代码后重试,错误消息:`, err);
+        handler.error(`编译失败,错误消息:`, err);
         process.exit();
     });
-});
+}
+
+
+

@@ -7,7 +7,7 @@ let path = require("path");
 let $ = require('gulp-load-plugins')();
 
 let manifest = require("./config_md5");
-let IS_PROD = require("./config_process");
+let configProcess = require("./config_process");
 
 // 配置忽略px 转rem class 规则，不支持正则匹配，只能将完整的selector 选择器列举出来
 const IGNORE_SELECTOR = [
@@ -52,7 +52,7 @@ module.exports = (pathConfig) => {
         let [src,dest] = [less_path.source,less_path.output];
 
         gulp.src(src)
-        .pipe($.if(!IS_PROD,$.changed(dest, {extension: '.css'})))  
+        .pipe($.if(!configProcess.IS_PROD,$.changed(dest, {extension: '.css'})))  
         .pipe($.debug({title: 'gulp-less ~~~~'}))//  $.changed 只检测修改的文件
         .on('error', reject)
         .pipe($.less())
@@ -71,7 +71,7 @@ module.exports = (pathConfig) => {
         .on('error', reject)
         .pipe(gulp.dest(dest))
         .on('end', () => {
-            if(IS_PROD){
+            if(configProcess.IS_PROD){
                 manifest(path.join(dest,"/**/*.css"),pathConfig).then(resolve).catch(reject);
             } else{
                 resolve();

@@ -1,12 +1,12 @@
 {
-  "name": "dress-3",
+  "name": "rosegal-wap",
   "version": "2.0.0",
   "description": "",
   "main": "gulpfile.js",
   "scripts": {
-    "dev": "cross-env NODE_ENV=dev gulp default",
-    "build": "cross-env NODE_ENV=prod gulp build",
-    "sprite": "cross-env NODE_ENV=dev gulp sprite --folder"
+    "dev": "cross-env NODE_ENV=dev node index.js",
+    "build": "cross-env NODE_ENV=prod node index.js",
+    "sprite": "cross-env NODE_ENV=task_sprite node index.js"
   },
   "directories": {
     "test": "test"

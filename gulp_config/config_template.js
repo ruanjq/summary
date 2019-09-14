@@ -8,8 +8,7 @@
 let gulp = require("gulp");
 let path = require("path");
 let $ = require('gulp-load-plugins')();
-
-let IS_PROD = require("./config_process");
+let configProcess = require("./config_process");
  
 
 // 
@@ -22,12 +21,12 @@ module.exports = (pathConfig) => {
             return;
         }
         // 生产环境加载 manifest.json 添加md5 版本号
-        if(IS_PROD){
+        if(configProcess.IS_PROD){
             src.push(path.join(pathConfig["rev_manifest"].output,pathConfig["rev_manifest"].fileName))
         }
         gulp.src(src)
-        .pipe($.if(!IS_PROD,$.changed(dest, {extension: ".html"})))  //  $.changed 只检测修改的文件
-        .pipe($.if(!IS_PROD,$.changed(dest, {extension: ".htm"})))  //  $.changed 只检测修改的文件
+        .pipe($.if(!configProcess.IS_PROD,$.changed(dest, {extension: ".html"})))  //  $.changed 只检测修改的文件
+        .pipe($.if(!configProcess.IS_PROD,$.changed(dest, {extension: ".htm"})))  //  $.changed 只检测修改的文件
         // 模板内联文件
         .pipe($.inlineSource({
             compress: false,
@@ -37,7 +36,7 @@ module.exports = (pathConfig) => {
         // 压缩模板、删除注释
         .pipe($.htmlclean())
         // 加上 md5版本号
-        .pipe($.if(IS_PROD,$.revCollectorV({
+        .pipe($.if(configProcess.IS_PROD,$.revCollectorV({
             replaceReved: true
         })))
         .on('error', reject)

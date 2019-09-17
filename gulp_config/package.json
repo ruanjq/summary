@@ -1,22 +1,19 @@
 {
-  "name": "dress-3",
+  "name": "rosegal-wap",
   "version": "2.0.0",
   "description": "",
   "main": "gulpfile.js",
   "scripts": {
-    "dev": "cross-env NODE_ENV=dev gulp default",
-    "build": "cross-env NODE_ENV=prod gulp build",
-    "sprite": "cross-env NODE_ENV=dev gulp sprite --folder"
+    "dev": "cross-env NODE_ENV=dev node index.js",
+    "build": "cross-env NODE_ENV=prod node index.js",
+    "sprite": "cross-env NODE_ENV=task_sprite node index.js"
   },
   "directories": {
-    "test": "test"
+    "test": "rosegal-wap gulp"
   },
   "dependencies": {
-    "browser-sync": "^2.18.13",
     "chalk": "^1.1.1",
-    "cnpm": "^6.0.0",
     "cross-env": "^5.0.0",
-    "del": "^2.2.2",
     "gulp": "^3.9.1",
     "gulp-clean-css": "3.0.4",
     "gulp-concat": "^2.6.0",
@@ -28,7 +25,6 @@
     "gulp-inline-source": "^3.0.0",
     "gulp-less": "^3.0.5",
     "gulp-load-plugins": "^1.5.0",
-    "gulp-notify": "^3.0.0",
     "gulp-plumber": "^1.1.0",
     "gulp-px2rem-plugin": "^0.4.0",
     "gulp-rename": "^1.2.2",
@@ -36,22 +32,17 @@
     "gulp-rev-v": "^1.0.0",
     "gulp-sequence": "^0.4.6",
     "gulp-sourcemaps": "^2.6.1",
-    "gulp-tinypng-compress": "^1.2.1",
     "gulp-uglify": "^1.5.1",
-    "gulp-watch": "^5.0.0",
     "gulp.spritesmith": "^6.2.1",
     "merge-stream": "^1.0.0",
     "minimist": "^1.2.0",
-    "ora": "^1.2.0",
-    "rev-hash": "^1.0.0",
-    "vinyl-buffer": "^1.0.0",
-    "workbox-build": "^2.1.3"
+    "vinyl-buffer": "^1.0.1"
   },
   "devDependencies": {
     "gulp-autoprefixer": "3.1.0",
     "gulp-changed": "^4.0.1",
     "socket.io": "^2.2.0"
   },
-  "author": "wuuashen",
+  "author": "ruanjq",
   "license": "ISC"
 }

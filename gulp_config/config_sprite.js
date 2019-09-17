@@ -5,7 +5,7 @@ let path = require("path");
 let buffer = require('vinyl-buffer');
 let fs = require("fs");
 let revHash = require('rev-hash');
-let IS_PROD = require("./config_process");
+let configProcess = require("./config_process");
 
 
 // tinypng 网站压缩图片优化
@@ -45,7 +45,7 @@ let task = sprite_path => {
         if (!fs.existsSync(dest)) {
             // 生产模式，不存在文件夹直接跳过，resolve
             // 开发模式 npm run sprite folder 不存在文件夹reject 失败
-            if(IS_PROD){
+            if(configProcess.IS_PROD){
                 return resolve();
             } else{
                 return reject(`未在 config_path.js 配置文件中找到 /${dirFolder} 该文件夹,请检查后重试`);
@@ -125,7 +125,7 @@ let spriteTask = function (pathConfig, folder) {
     let sprite_path = pathConfig.sprite;
 
     // 生产模式读取目录下的所有雪碧图跟目录
-    if (IS_PROD) {
+    if (configProcess.IS_PROD) {
         sprites_folder = readSpritesFolder(sprite_path.dir);
     } else { // 单独编译模式接受传递的folder 参数
         sprites_folder.push(folder);

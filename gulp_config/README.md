@@ -38,7 +38,7 @@ $ npm install
 ## 4：配置文件说明
 
 |文件名|说明|
-|:--|:--|:--|:--|
+|:--|:--|
 |`config_hanlder.js`|事件处理器配置模块|
 |`config_less.js`|less 样式编译模块|
 |`config_md5.js`|css、js 文件添版本号构建模块|
@@ -54,7 +54,7 @@ $ npm install
 ## 5：核心依赖插件说明
 
 |查件名称|说明|
-|:--|:--|:--|:--|
+|:--|:--|
 |`chalk`|美化 log 提示信息|
 |`gulp-changed`|dev watch 模式下只监听改动的文件，防止全局执行|
 |`socket.io`|socket 通信提示错误消息到浏览器客户端|

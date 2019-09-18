@@ -9,7 +9,6 @@ let gulp = require("gulp");
 let path = require("path");
 let $ = require('gulp-load-plugins')();
 let configProcess = require("./config_process");
- 
 
 // 
 module.exports = (pathConfig) => {

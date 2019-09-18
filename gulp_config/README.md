@@ -37,29 +37,31 @@ $ npm install
 
 ## 4：配置文件说明
 
-| 文件名  | 说明  |
-| ------------ | ------------ | ------------ |
-| `config_hanlder.js`  |  事件处理器配置模块  |
-| `config_less.js`  | less 样式编译模块  |
-| `config_md5.js`  | css、js 文件添版本号构建模块  |
-| `config_path.js`  | 项目打包路径配置  |
-| `config_process.js`  | 开发环境配置  |
-| `config_script.js`  | script 脚本文件配置模块  |
-| `config_socket.js`  | dev 开发模式下 socket 推送错误消息  |
-| `config_sprite.js`  | 雪碧图配置模块  |
-| `config_template.js`  |  html 模板打包配置  |
-| `rev-manifest-skin2.js`  | md5 版本号 json 映射文件，skin2 根据config_path 配置项目结构自动生成  |
-| `gulpfile.js`  |  gulpfile.js 入口主文件配置  |
+|文件名|说明|
+|:--|:--|:--|:--|
+|`config_hanlder.js`|事件处理器配置模块|
+|`config_less.js`|less 样式编译模块|
+|`config_md5.js`|css、js 文件添版本号构建模块|
+|`config_path.js`|项目打包路径配置|
+|`config_process.js`|开发环境配置|
+|`config_script.js`|script 脚本文件配置模块|
+|`config_socket.js`|dev 开发模式下 socket 推送错误消息|
+|`config_sprite.js`|雪碧图配置模块|
+|`config_template.js`|html 模板打包配置|
+|`rev-manifest-skin2.js`|md5 版本号 json 映射文件，skin2 根据config_path 配置项目结构自动生成|
+|`gulpfile.js`|gulpfile.js入口主文件配置|
 
 ## 5：核心依赖插件说明
-| 查件名称  | 说明  |
-| ------------ | ------------ | ------------ |
-| `chalk`  |  美化 log 提示信息  |
-| `gulp-changed`  | dev watch 模式下只监听改动的文件，防止全局执行 |
-| `socket.io`  | socket 通信提示错误消息到浏览器客户端  |
-| `gulp.spritesmith`  | gulp雪碧图合并插件  |
-| `gulp-debug`  | gulp 调试输出日志信息  |
-| `gulp-rev-collector-v` `gulp-rev-v`  | 文件md5版本号配置  |
+
+|查件名称|说明|
+|:--|:--|:--|:--|
+|`chalk`|美化 log 提示信息|
+|`gulp-changed`|dev watch 模式下只监听改动的文件，防止全局执行|
+|`socket.io`|socket 通信提示错误消息到浏览器客户端|
+|`gulp.spritesmith`|gulp雪碧图合并插件|
+|`gulp-debug`|gulp 调试输出日志信息|
+|`gulp-rev-collector-v` `gulp-rev-v`|文件md5版本号配置|
+
 
 ## 6：开始使用
 #### 开发模式

@@ -24,8 +24,8 @@ module.exports = (pathConfig) => {
             src.push(path.join(pathConfig["rev_manifest"].output,pathConfig["rev_manifest"].fileName))
         }
         gulp.src(src)
-        .pipe($.if(!configProcess.IS_PROD,$.changed(dest, {extension: ".html"})))  //  $.changed 只检测修改的文件
-        .pipe($.if(!configProcess.IS_PROD,$.changed(dest, {extension: ".htm"})))  //  $.changed 只检测修改的文件
+        .pipe($.if(configProcess.IS_DEV,$.changed(dest, {extension: ".html"})))  //  $.changed 只检测修改的文件
+        .pipe($.if(configProcess.IS_DEV,$.changed(dest, {extension: ".htm"})))  //  $.changed 只检测修改的文件
         // 模板内联文件
         .pipe($.inlineSource({
             compress: false,

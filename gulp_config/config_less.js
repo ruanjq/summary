@@ -34,7 +34,7 @@ const IGNORE_SELECTOR = [
     ".fbEMail .popOnBTns:after",
     ".fbEMail .popOnBTns:before",
     ".order-received .close-icon:before",
-    ".order-received .close-icon:after",
+    ".order-received .close-icon:after",".claim-coupon-list .coupon-list .receive-loading::before"
 ];
 
 // 下面374是代表374px不转为rem, 不用可以注释掉 
@@ -52,7 +52,7 @@ module.exports = (pathConfig) => {
         let [src,dest] = [less_path.source,less_path.output];
 
         gulp.src(src)
-        .pipe($.if(!configProcess.IS_PROD,$.changed(dest, {extension: '.css'})))  
+        .pipe($.if(configProcess.IS_DEV,$.changed(dest, {extension: '.css'})))  
         .pipe($.debug({title: 'gulp-less ~~~~'}))//  $.changed 只检测修改的文件
         .on('error', reject)
         .pipe($.less())

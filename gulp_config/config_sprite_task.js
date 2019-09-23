@@ -24,17 +24,18 @@ let spriteTask = (folderName,config_path) => {
             callback().then((pathConfig) => {
                 // 雪碧图合并成功后。还需要调用less 任务执行
                 if(pathConfig.less){
-                    return less(pathConfig);
+                    less(pathConfig).then(() =>{
+                        sq_resolve_count ++;
+                        sqRec(arr);
+                    }).catch(err =>{
+                        reject(err);
+                    });
                 } else{
                     return Promise.resolve();
                 }
-            }).then(() => {
-                sq_resolve_count ++;
-                sqRec(arr);
             }).catch(err => {
                 errMes = err;
                 sqRec(arr);
-                
             })
         })(spriteQueue);
     })

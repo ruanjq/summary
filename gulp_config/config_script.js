@@ -10,7 +10,7 @@ module.exports = function(pathConfig){
     return new Promise((resolve,reject) => {
         let [src,dest] = [script_path.source,script_path.output];
         gulp.src(src)
-        .pipe($.if(!configProcess.IS_PROD,$.changed(dest, {extension: '.min.js'})))  //  $.changed 只检测修改的文件
+        .pipe($.if(configProcess.IS_DEV,$.changed(dest, {extension: '.min.js'})))  //  $.changed 只检测修改的文件
         // 合并文件 方式：//=require ./xxx.js
         .pipe($.include())
         .on('error', reject)

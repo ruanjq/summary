@@ -155,24 +155,24 @@
         理解es6 class构造以及继承的底层实现原理
         答： class Cart extends{
 
-            constructor(){
-                super();
-            }
+        constructor(){
+        super();
+        }
 
         }
     </p>
 
     <p>
         写一个mul函数，使用方法如下。
-        console.log(mul(2)(3)(4)); // output : 24 
+        console.log(mul(2)(3)(4)); // output : 24
         console.log(mul(4)(3)(4)); // output : 48
         答：
         <script>
-            var mul = function(num){
+            var mul = function (num) {
                 let result = 1;
                 result = result * num;
-                return function(n){
-                    if(arguments.length == 0){
+                return function (n) {
+                    if (arguments.length == 0) {
                         return result;
                     }
                     result = result * n;
@@ -216,12 +216,12 @@
     <script>
         const inputProxy = document.getElementById('js_proxy_input');
         const p = document.getElementById('js_proxy_text');
-        const newObj = new Proxy({},{
-            get:function(target,key,receiver){
+        const newObj = new Proxy({}, {
+            get: function (target, key, receiver) {
                 console.log(`getting ${key}!`);
                 return Reflect.get(target, key, receiver);
             },
-            set:function(target, key, value, receiver){
+            set: function (target, key, value, receiver) {
                 console.log(target, key, value, receiver);
                 if (key === 'text') {
                     input.value = value;
@@ -232,12 +232,12 @@
             }
         });
 
-        inputProxy.addEventListener('keyup', function(e) {
+        inputProxy.addEventListener('keyup', function (e) {
             newObj.text = e.target.value;
         });
     </script>
 
-    
+
     <script>
         var foo = (function () {
             var o = {
@@ -257,14 +257,14 @@
                 return this;
             }
         });
-    
+
         var result = foo(key);
         console.log(result);
     </script>
-    
+
     <script>
         console.log("原型链测试");
-    
+
         var Fn = function () {
             this.x = 100;
             this.y = 200;
@@ -278,10 +278,10 @@
         Fn.prototype.getY = function () {
             console.log(this.y);
         }
-    
+
         var f1 = new Fn();
         var f2 = new Fn();
-    
+
         console.log(f1.getX === f2.getX); // true   false
         console.log(f1.getY === f2.getY); // true
         console.log(f1.__proto__.getY === Fn.prototype.getY); // true
@@ -289,14 +289,14 @@
         console.log(f1.getX === Fn.prototype.getX); // false
         console.log(f1.constructor); // Fn
         console.log(Fn.prototype.__proto__.constructor); // Fn
-    
+
         f1.getX(); // 100
-    
+
         f1.__proto__.getX(); // undefined  
         f2.getY(); // 200
         Fn.prototype.getY(); // undefiend
     </script>
-    
+
     <script>
         /**
         *  1: 事件绑定。this. ==》  
@@ -315,18 +315,18 @@
         console.log(obj.prop.getFullName()); // undefined
         var test = obj.prop.getFullName;
         console.log(test()); // lang
-    
+
         var x = 1;
-    
+
         function a() {
             console.log(this.x);
         }
     </script>
-    
-    
+
+
     <script>
-    
         console.log("变量提升，函数提升");
+
         function Foo() {
             getName = function () {
                 console.log(1);
@@ -342,12 +342,12 @@
         var getName = function () {
             console.log(4);
         };
-    
+
         function getName() {
             console.log(5);
         }
-    
-    
+
+
         Foo.getName(); // ? 2；
         getName(); // ?    4
         Foo().getName(); // ?  1
@@ -358,15 +358,17 @@
     </script>
     <div class="box" style="width: 100%; overflow: hidden;">
         <span style=" width: 100px; height: 100px; background: red; display: inline-block; vertical-align: top;"></span>
-        <span style=" height: 100px; background: gray; padding-left: 100px; padding-right: 100px;display: inline-block; vertical-align: top;"></span>
-        <span style="float: right; width: 100px; height: 100px; background: red;display: inline-block; vertical-align: top;"></span>
+        <span
+            style=" height: 100px; background: gray; padding-left: 100px; padding-right: 100px;display: inline-block; vertical-align: top;"></span>
+        <span
+            style="float: right; width: 100px; height: 100px; background: red;display: inline-block; vertical-align: top;"></span>
     </div>
     <p>
         理解堆栈溢出和内存泄露原理，如何防止
         答：
-            JavaScript 代码执行的时候，都会分配一定的栈内存空间，存储变量，参数，局部变量，返回值这些数据，这些数据会占用一定的内存空间，当存储的数过多，超过了系统分配的栈空间，就会导致内存溢出。
-            内存泄露，当JavaScript 垃圾回收机制超过5次，内存还连续上升，就是内存泄露
-            如何防止：减少全局变量，对象用完及时释放，减少使用闭包，尽可能使用局部变量。
+        JavaScript 代码执行的时候，都会分配一定的栈内存空间，存储变量，参数，局部变量，返回值这些数据，这些数据会占用一定的内存空间，当存储的数过多，超过了系统分配的栈空间，就会导致内存溢出。
+        内存泄露，当JavaScript 垃圾回收机制超过5次，内存还连续上升，就是内存泄露
+        如何防止：减少全局变量，对象用完及时释放，减少使用闭包，尽可能使用局部变量。
     </p>
     <p>
         如何处理循环的异步操作
@@ -379,27 +381,28 @@
 
     <h3>执行机制</h3>
     <p>
-        为何try里面放return，finally 还会执行，理解其内部机制  <br>
+        为何try里面放return，finally 还会执行，理解其内部机制 <br>
         答： 先执行try，catche ，finally，再return 结果
     </p>
     <p>
         JavaScript如何实现异步编程，可以详细描述EventLoop机制 <br>
         答：异步编程，方式 1：回调函数。2:Promise 3：async awit 4：发布订阅模式
-            EventLoop 机制：Javascript EventLoop，js是单线程，只有一个主线程，当遇到一些事件io异步方法时候会将其加入异步事件队列，等主线程所有执行栈执行完毕，空闲状态下，才会执行异步队列的方法，整个过程循环执行，就称为事件循环
+        EventLoop 机制：Javascript
+        EventLoop，js是单线程，只有一个主线程，当遇到一些事件io异步方法时候会将其加入异步事件队列，等主线程所有执行栈执行完毕，空闲状态下，才会执行异步队列的方法，整个过程循环执行，就称为事件循环
     </p>
     <p>
         宏任务和微任务分别有哪些 <br>
         答：宏任务：script 代码执行,setTimeout，setInterval,事件I/O，requestAnimationFrame
-            微任务：Promise
-            执行原理，script代码执行先 执行宏任务，全局入栈，分发宏任务和微任务栈，再执行微任务
+        微任务：Promise
+        执行原理，script代码执行先 执行宏任务，全局入栈，分发宏任务和微任务栈，再执行微任务
     </p>
 
     <p> 使用Promise 实现串行 <br>
         答：递归执行调用，用数组将promise 函数存储，然后调用递归调用
         <script>
-            function iteratorPromise(arr){
-                (function iter(){
-                    if(arr.length){
+            function iteratorPromise(arr) {
+                (function iter() {
+                    if (arr.length) {
                         arr.shift()().then(iter);
                     }
                 })();
@@ -410,9 +413,9 @@
     <p>
         Node 与浏览器 EventLoop 的区别
         答：
-            浏览器 ：microtask 在事件循环的macrotask 执行后执行
-            Node:   microtask 在事件循环的各个阶段之间执行。
-            https://juejin.im/post/5c337ae06fb9a049bc4cd218
+        浏览器 ：microtask 在事件循环的macrotask 执行后执行
+        Node: microtask 在事件循环的各个阶段之间执行。
+        https://juejin.im/post/5c337ae06fb9a049bc4cd218
     </p>
 
     <p>
@@ -422,14 +425,14 @@
 
     <p>
         理解ECMASCRIPT和JavaScript 的关系
-        答： JavaScript 包含  ECMASCRIPT，DOM，BOM，ECMAScript 是JavaScript的一个标准
+        答： JavaScript 包含 ECMASCRIPT，DOM，BOM，ECMAScript 是JavaScript的一个标准
     </p>
 
     <p>
         setInterval 需要注意的点，使用setTimeout，实现setInterval
         答： var fn = function(){
-            console.log(new Date().getTime());
-            setTimeout(fn,1000);
+        console.log(new Date().getTime());
+        setTimeout(fn,1000);
         }
         setTimeout(fn,1000);
     </p>
@@ -437,22 +440,17 @@
     <p>
         JavaScript 提供的正则表达式API，可以使用正则表达式（邮箱校验，URL解析，去重等）解决常见问题。
         答：match，exec，test
-            email 正则邮箱 /^(\w)+(\.\w+)*@(\w)+((\.\w)+)$/ 
-            
-            去重：
-            var str = "adsfjjbkk";
-            str.replace(/(.)(\1)+/g,function($1,$2){return $2});
-            URL 解析，获取?后面参数 /(?<=\?).*/
-            var url = "http://www.baidu.com/?a=1&b=1&c=&d";
+        email 正则邮箱 /^(\w)+(\.\w+)*@(\w)+((\.\w)+)$/
 
-    </p>
-
-    <p>
-        js 异常处理的方式，统一的异常处理方案
-        答：try catch，捕获代码可能出现的问题，
+        去重：
+        var str = "adsfjjbkk";
+        str.replace(/(.)(\1)+/g,function($1,$2){return $2});
+        URL 解析，获取?后面参数 /(?<=\?).*/ var url="http://www.baidu.com/?a=1&b=1&c=&d" ; </p> <p>
+            js 异常处理的方式，统一的异常处理方案
+            答：try catch，捕获代码可能出现的问题，
             window.onerror 捕获非可能出现的问题。
             window.addEventListener('error', error => {}) 捕获网络请求异常
-            Promise.catch  捕获异步错误
+            Promise.catch 捕获异步错误
     </p>
 
     <p> 实现常用布局，（三栏，圣杯，双飞翼，吸顶）并理解其优缺点</p>
@@ -460,7 +458,7 @@
     <h2>前端安全</h2>
     https://juejin.im/post/5bad9140e51d450e935c6d64
     <p>
-        XSS （Cross-Site-Scripting）跨站脚本攻击  <br>
+        XSS （Cross-Site-Scripting）跨站脚本攻击 <br>
         分类
         1：存储型，反射型，
         解决方案：将前端输出的数据都进行转义，将输出的字符串反斜杠转义，cookie 使用httpOnly属性
@@ -468,39 +466,40 @@
         解决方案：
         阻止不明域名的请求，
         增加cookie 域名验证
-        新增CSFR token 
+        新增CSFR token
     </p>
 
     <p>
         手写一个sleep 函数 <br>
         <script>
             // sleep(10).then(function(){ });
-            var sleep = function(t){
+            var sleep = function (t) {
                 var s = new Sleep(t);
-                function Sleep(time){
+
+                function Sleep(time) {
                     this.time = time;
                 }
-                
-                function init(nt,callback){
-                    setTimeout(function(){
+
+                function init(nt, callback) {
+                    setTimeout(function () {
                         callback();
-                    },nt);
+                    }, nt);
                 }
 
-                Sleep.prototype.then = function(arg){
-                    init(this.time,arg)
+                Sleep.prototype.then = function (arg) {
+                    init(this.time, arg)
                 }
 
                 return s;
             };
-            sleep(2000).then(function(){
+            sleep(2000).then(function () {
                 console.log("sleep then");
             });
         </script>
     </p>
 
     <p>
-        手写一个        
+        手写一个
     </p>
 
     <p>
@@ -516,52 +515,51 @@
     <p>
         谈谈垃圾回收方式及内存管理
         GC 垃圾回收方式，执行环境会负责管理代码中的内存，定期清理释放。
-        1：标记清除  当变量从进入环境到离开环境后，变量会回收。
-        2：引用计数  跟踪记录每个值被引用的次数，引用次数为0的变量会回收
+        1：标记清除 当变量从进入环境到离开环境后，变量会回收。
+        2：引用计数 跟踪记录每个值被引用的次数，引用次数为0的变量会回收
     </p>
 
     <p>
         防抖函数，debounce,
-        节流函数  throttle
+        节流函数 throttle
         <input type="text" id="js_input">
         <input type="text" id="js_input1">
         <script>
-
             var input = document.getElementById("js_input");
             var input1 = document.getElementById("js_input1");
-            
-            input.addEventListener("keyup",debounce(function(){
-                console.log("debounce",this.value,new Date());
-            },500));
-            
-            function throttle(fn,delay){
+
+            input.addEventListener("keyup", debounce(function () {
+                console.log("debounce", this.value, new Date());
+            }, 500));
+
+            function throttle(fn, delay) {
                 var canRun = true;
-                return function(){
-                    if(!canRun) return;
+                return function () {
+                    if (!canRun) return;
                     var context = this,
                         arg = arguments;
                     canRun = false;
-                    setTimeout(function(){
-                        fn.apply(context,arg);
+                    setTimeout(function () {
+                        fn.apply(context, arg);
                         canRun = true;
-                    },delay);
+                    }, delay);
                 }
             }
 
-            input1.addEventListener("keyup",throttle(function(){
-                console.log("throttle",this.value,new Date());
-            },500));
+            input1.addEventListener("keyup", throttle(function () {
+                console.log("throttle", this.value, new Date());
+            }, 500));
 
-            function debounce(fn,delay){
+            function debounce(fn, delay) {
                 var timer = null;
                 console.log("闭包外卖");
-                return function(){
+                return function () {
                     var context = this,
                         arg = arguments;
                     clearTimeout(timer);
-                    timer = setTimeout(function(){
-                        fn.apply(context,arg);
-                    },delay);
+                    timer = setTimeout(function () {
+                        fn.apply(context, arg);
+                    }, delay);
                 }
             }
         </script>
@@ -570,23 +568,24 @@
     <p>
         <h3>手写一个Promise</h3>
         <script>
-            function MyPromise(constructor){
+            function MyPromise(constructor) {
                 var self = this;
                 self.status = "pending";
                 self.value = undefined;
                 self.reason = undefined;
                 self.onFulfilledFunc = [];
                 self.onRejectedFunc = [];
-                function reslove(value){
-                    if(self.status === "pending"){
+
+                function reslove(value) {
+                    if (self.status === "pending") {
                         self.status = "resolved";
                         self.value = value;
                         self.onFulfilledFunc.forEach(fn => fn(value));
                     }
                 };
 
-                function reject(reason){
-                    if(self.status === "pending"){
+                function reject(reason) {
+                    if (self.status === "pending") {
                         self.status = "rejected";
                         self.reason = reason;
                         self.onRejectedFunc.forEach(fn => fn(reason));
@@ -595,39 +594,39 @@
 
                 // 捕获异常
                 try {
-                    constructor(reslove,reject);
+                    constructor(reslove, reject);
                 } catch (error) {
                     reject(error);
                 }
             }
 
-            MyPromise.prototype.then = function(onFullfilled,onRejected){
+            MyPromise.prototype.then = function (onFullfilled, onRejected) {
                 let self = this;
                 console.log("then 函数");
-                switch(self.status){
+                switch (self.status) {
                     case "pending":
-                        if(typeof onFullfilled === "function") self.onFulfilledFunc.push(onFullfilled); 
-                        if(typeof onRejected === "function") self.onRejectedFunc.push(onRejected); 
+                        if (typeof onFullfilled === "function") self.onFulfilledFunc.push(onFullfilled);
+                        if (typeof onRejected === "function") self.onRejectedFunc.push(onRejected);
                         break;
                     case "resolved":
                         onFullfilled(self.value);
                         break;
                     case "rejected":
-                        onRejected(self.reason); 
+                        onRejected(self.reason);
                         break;
                     default:
                         break;
                 }
             }
-            
-            var pmise = new MyPromise(function(reslove,reject){
-                setTimeout(function(){
+
+            var pmise = new MyPromise(function (reslove, reject) {
+                setTimeout(function () {
                     reslove(1);
-                },1000);
+                }, 1000);
             });
 
-            pmise.then(function(res){
-                console.log("自定义promise 运行效果",res);
+            pmise.then(function (res) {
+                console.log("自定义promise 运行效果", res);
             });
         </script>
     </p>
@@ -646,18 +645,19 @@
     <p>
         <h3>插入排序算法</h3>
         <script>
-            var a = [23,6,34,1,19,10,3,5];
-            function insertSort(arr){
-                var result,temp,i,j,len = arr.length;
+            var a = [23, 6, 34, 1, 19, 10, 3, 5];
+
+            function insertSort(arr) {
+                var result, temp, i, j, len = arr.length;
                 result = arr.slice(0);
-                for(i = 1; i < len; i++){
+                for (i = 1; i < len; i++) {
                     temp = result[i];
                     j = i - 1;
-                    while(j >= 0 && temp < result[j]){
-                        result[j+1] = result[j];
+                    while (j >= 0 && temp < result[j]) {
+                        result[j + 1] = result[j];
                         j--;
                     }
-                    result[j+1] = temp;
+                    result[j + 1] = temp;
                 }
                 return result;
             }
@@ -678,30 +678,28 @@
             Array.prototype.selfMap = function () {
                 const ary = this
                 const result = []
-                const [ fn, thisArg ] = [].slice.call(arguments)
+                const [fn, thisArg] = [].slice.call(arguments)
                 if (typeof fn !== 'function') {
-                    throw new TypeError(fn + 'is not a function')  
+                    throw new TypeError(fn + 'is not a function')
                 }
                 for (let i = 0; i < ary.length; i++) {
                     result.push(fn.call(thisArg, ary[i], i, ary))
                 }
                 return result
             }
-            
+
             const newmap = new Array(1, 2, 3, 4);
-            newmap.selfMap(function(item){
+            newmap.selfMap(function (item) {
                 return item + 1
             }) // [ 2, 3, 4, 5 ]
-
-
         </script>
     </p>
 
     <p>
         <h3>计算 10 的阶乘</h3>
         <script>
-            (function test(n){
-                return ((n > 1) ? n * test(n-1) : n)
+            (function test(n) {
+                return ((n > 1) ? n * test(n - 1) : n)
             })(10);
         </script>
     </p>
@@ -709,12 +707,12 @@
         <h3>js 严格模式与非严格模式有什么区别</h3>
         <p>
             1: 不允许随意创建全局变量，如果未声明，则抛出 ReferenceError 错误
-            2：删除 变量会抛出 SyntaxError 
+            2：删除 变量会抛出 SyntaxError
             3: 给只读属性赋值会抛出TypeError
             4：无法调用arguments.callee、caller 方法
         </p>
         <script>
-            
+
         </script>
     </p>
 
@@ -725,47 +723,48 @@
             add(1)(2)(3) = 6
             add(1, 2, 3)(4) = 10
             add(1)(2)(3)(4)(5) = 15 */
-            
-            function add(){
+
+            function add() {
                 var _args = [].slice.call(arguments);
-                console.log("收集到的第一个参数",_args);
-                var adder = function(){
-                    var _adder = function(){
-                        [].push.apply(_args,[].slice.call(arguments));
+                console.log("收集到的第一个参数", _args);
+                var adder = function () {
+                    var _adder = function () {
+                        [].push.apply(_args, [].slice.call(arguments));
                         // console.log(_args);
                         return _adder;
                     }
-                    _adder.toString = function(){
-                        return _args.reduce(function(a,b){
+                    _adder.toString = function () {
+                        return _args.reduce(function (a, b) {
                             return a + b;
                         });
                     }
                     return _adder;
                 }
-                return adder.apply(null,[].slice.call(arguments));
+                return adder.apply(null, [].slice.call(arguments));
             }
 
             // console.log( add(1)(2)(3)(4)(5));
             // console.log( add(1,2,3)(4,5));
-
         </script>
     </p>
 
     <p>
         <h3>ToString 方法测试</h3>
         <script>
-            var toStringTest = function(){
+            var toStringTest = function () {
                 console.log("函数主体");
             }
-            toStringTest.valueOf = function(){
+            toStringTest.valueOf = function () {
                 console.log("valueOf 函数");
                 return "10";
             }
-            toStringTest.toString = function(){
+            toStringTest.toString = function () {
                 console.log("toString 函数");
                 return "11";
             }
-            console.log(toStringTest+{a:1});
+            console.log(toStringTest + {
+                a: 1
+            });
         </script>
     </p>
 
@@ -773,26 +772,26 @@
         <h3>函数柯里化 测试</h3>
         <script>
             console.log("函数柯里化 测试");
-            
-            function sum(){
+
+            function sum() {
                 var _args = [].slice.call(arguments);
-                var add = function(){
-                    if(arguments.length != 0){
+                var add = function () {
+                    if (arguments.length != 0) {
                         _args = _args.concat([].slice.call(arguments));
                         return add;
                     }
                 }
-                add.toString = function(){
+                add.toString = function () {
                     console.log("柯里话求和");
-                    return _args.reduce((a,b) =>{
+                    return _args.reduce((a, b) => {
                         return a + b;
                     });
                 }
                 return add;
             }
 
-            sum(1,2,3)(4)(5,6);
-            sum(1,2,3,4,5,6);
+            sum(1, 2, 3)(4)(5, 6);
+            sum(1, 2, 3, 4, 5, 6);
         </script>
     </p>
 
@@ -801,8 +800,8 @@
         <h3>递归测试</h3>
 
         <script>
-            function total(x){
-                if(x == 1){
+            function total(x) {
+                if (x == 1) {
                     return 1;
                 }
                 console.log(x); // 4 
@@ -816,6 +815,34 @@
             }
 
             console.log(total(4)); //10
+        </script>
+    </p>
+
+    <p>
+        <h3>什么是事件代理</h3>
+        <article>
+            事件代理是利用事件冒泡的特性，将事件绑定到父元素上面，利用event.target 判断是否等于目标元素，从而进行事件执行，具有以下优点
+            1：减少监听器
+            2：可以动态监听
+        </article>
+        <script>
+            var ul = document.querySelector('#list')
+            list.addEventListener('click', function (e) {
+                var l = e.target
+
+                //从target（点击）元素向上找currentTarget（监听）元素，找到了想委托的元素就触发事件，没找到就返回null
+
+                while (l.tagName !== 'LI') {
+                    l = l.parentNode
+                    if (l === ul) {
+                        l = null
+                        break;
+                    }
+                }
+                if (l) {
+                    console.log('你点击了ul里的li')
+                }
+            })
         </script>
     </p>
 </body>

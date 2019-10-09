@@ -1,0 +1,72 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #left {
+            float: left;
+            /*只设置浮动,不设宽度*/
+            height: 500px;
+            width: 100px;
+            background-color: #f00;
+ 
+            margin-left: -100%;  
+        }
+
+        #right {
+            overflow: hidden;
+            /*触发bfc*/
+            height: 500px;
+            width: 100px; margin-left: -100px;  
+            float: right;
+            background-color: #0f0;
+        }
+
+        #center {
+            height: 500px;
+            background: gray;
+            float: left;
+            width: 100%;
+        }
+
+        #parent {
+            overflow: hidden;
+            position: relative;
+          
+        }
+        #center-inner{ padding-left: 100px; padding-right: 100px;}
+    </style>
+</head>
+
+<body>
+
+    <body>
+
+
+        <!-- 圣杯布局 -->
+        <!-- <div id="parent">
+            <div id="center"> 中间内容自适应  </div>
+            <div id="left">左列不定宽</div>
+            <div id="right">右列自适应</div>
+        </div>
+ -->
+        <!-- 双飞燕布局 -->
+        <div id="parent">
+            <div id="center">
+                <div id="center-inner">双飞燕布局 中间内容自适应</div>
+            </div>
+            <div id="left">左列不定宽</div>
+            <div id="right">右列自适应</div>
+        </div>
+    </body>
+</body>
+
+</html>

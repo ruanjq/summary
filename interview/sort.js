@@ -1,5 +1,6 @@
 
 
+// 快速排序算法
 function quickSort(arr){
  
     if(arr.length <= 1){
@@ -21,6 +22,8 @@ function quickSort(arr){
 }
 
 
+
+// 选择排序算法
 function selectSort(arr){
     for(let j = 0; j < arr.length - 1; j++){
         let min = j;
@@ -36,6 +39,8 @@ function selectSort(arr){
     return arr;
 }
 
+
+// 插入排序算法
 function insetSort(arr){
     for(let i = 1; i < arr.length; i++){
         let j = i;
@@ -54,6 +59,8 @@ function insetSort(arr){
     
 }
 
+
+// 冒泡排序算法
 function bubbleSort(arr){
     for(let j = arr.length - 1; j > 0; j --){
         for(let i = 0; i < j; i++){

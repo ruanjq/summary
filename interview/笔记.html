@@ -792,6 +792,34 @@
 
             sum(1, 2, 3)(4)(5, 6);
             sum(1, 2, 3, 4, 5, 6);
+
+            var currying = function(fn){
+                var _args = [].slice.call(arguments,1)
+                let rec = function(){
+                    if(arguments.length != 0){
+                        _args = _args.concat([].slice.call(arguments));
+                        return rec;
+                    }
+                    
+                }
+                rec.toString = function(){
+                    if(typeof fn === "function"){
+                        return fn.apply(null,_args);
+                    }
+                }
+                return rec;
+            }
+
+             
+            var sum = currying(function() {
+                var args = [].slice.call(arguments);
+                return args.reduce(function(a, b) {
+                    return a + b;
+                })
+            }, 10)
+            console.log(sum(20, 10)(5,5)(5));  // 40
+
+            
         </script>
     </p>
 
@@ -845,6 +873,119 @@
             })
         </script>
     </p>
+
+    <p>
+        <h3>箭头函数和普通函数的区别</h3>
+        <article>
+            1:箭头函数不能被new 示例创建
+            2:箭头函数没有arguments
+            3:语法和普通函数不一样
+            4:箭头函数没有prototype
+            5:箭头函数this 继承外层函数上线文的this 对象
+        </article>
+    </p>
+
+    <p>
+        <h3>正则实现对数字每3位加逗号算法</h3>
+
+        <script>
+            // API 版本
+            (123456789.12345343).toLocaleString('en-US');
+        </script>
+        <script>
+            // 正则匹配，
+            // 1:位置不能是开头，(?!^)
+            // 2:从后面算起没3个数字的前面的位置新增逗号 (?=(\d{3})+$)
+            // 3:最终拼接
+            "123456789".replace(/(?!\b)(?=(\d{3})+\b)/g,",")
+        </script>
+    </p>
+
+    <p>
+        <h3>js 正则查找的时候排除某个字符</h3>
+        <script>
+            // 排除a
+            var reg = /.[^a]*/g;
+        </script>
+    </p>
+
+    <p>
+        <h3>webpack 和gulp，grunt区别</h3>
+        <article>
+            1:grunt 和 gulp 属于任务流工具task running
+            2:webpack属于模块打包工具Bunlder
+        </article>
+    </p>
+
+    <p>
+        <h3>webpack 打包过程（主要围绕模块进行讲解）</h3>
+        <article>
+            1:读取文件，分析模块的依赖配置
+            2:对依赖的模块进行解析，深度遍历
+            3:匹配识别对应的模块，使用不同的loader
+            4:编译模块，生成抽象语法树ABT
+            5:遍历ABT，输出js
+        </article>
+    </p>
+
+    <p>
+        <h3>webpack 打包优化</h3>
+        <article>
+            1:使用compression-webpack-plugin 压缩代码
+            2:使用cdn 引入第三方库文件
+            3:按需加载引入相关组件
+        </article>
+    </p>
+
+    <p>
+        <h3>Vuex的理解</h3>
+        <article>
+            1：Vuex 包含的5个属性，state，getter，mutation，action，module
+            state：负责存储数据，存储状态，当注册了store实例以后，通过this.$store.xx来访问数据，数据为响应式的。
+            2：getter：修改state属性的方法，存放组件一些公共方法，它的返回值会被依赖缓存起来，当依赖值发生改变时候会重新计算
+            3：mutation：更改Vuex的store中状态唯一方式是提交mutation，同步代码
+            4:action:包含任意的异步操作，通过提交mutation间接更改状态，通过组件中的method dispatch触发
+            5:moudle：将store 分割为成模块，每个模块都有对对应的getter,mutation,action,state,将modules 注册到vuex 上，
+        </article>
+    </p>
+
+    <p>
+        <h3>Vue声明周期</h3>
+        <article>
+            1.1:beforeCreate   
+            1.2:created
+            2.1:beforeMount
+            2.1:mounted
+            3.1:beforeUpdate
+            3.2:updated
+            3.1:beforeDestroy
+            3.2:destroyed
+        </article>
+    </p>
+
+    <p>
+        <h3>http 三次握手</h3>
+        <article>
+            1:客户端发送SYN报文标识给服务端
+            2:服务端接受，返回syn+ack报文给客户端
+            3:客户端发送带ack 标识给服务端
+        </article>
+    </p>
+
+    <p>
+        <h3>简单介绍一下MVVM 模式</h3>
+        <article>
+            1:new MVVM() 实例初始化
+            2:Observer  通过DefineProperty 劫持属性
+            3:Compile   初始化指令模板
+            4:Dep       通过Observe劫持的熟悉发布订阅，通知相关事件
+            5:Update:根据Watcher 监听的数据更新模板
+            6:Wather ，监听事件
+        </article>
+    </p>
+
+    
+
 </body>
 
 </html>

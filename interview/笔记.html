@@ -984,8 +984,57 @@
         </article>
     </p>
 
-    
 
+    <p>
+        <h3>Vue中父子之间的通信方式</h3>
+        <article>
+            1:父组件通过Props向子组件传递数据,用一个形象的比喻来说，父子组件之间的数据传递相当于自上而下水管子，只能从上往下流，不能逆流，这也正是Vue 的设计理念之单向数据流
+            2:$emit:子组件触发消息传递给父组件回调函数绑定执行
+            3:父组件调用子组件的方式：this.$refs.组件名.方法名()
+            4:子组件调用父组件方法.this.$parent.方法名()
+            4:同级组件之间通信使用vuex进行管理
+            5:事件总线EventBus 
+            6:使用$boradcast和$dispatch事件
+        </article>
+    </p>
+
+    <p>
+        <h3>说说你项目中遇到的难点</h3>
+        <article>
+            1:PWA接入，学习相关技术文档，项目实践
+            2:多属性商品切换
+            3:交互体验
+            4:购物车交互逻辑
+            5:网站性能优化
+            6:canvas 雪花效果
+        </article>
+    </p>    
+
+    <p>
+        <h3>简单的自我介绍</h3>
+        <article>
+            我叫xxx，从事web前端开发有4年了，对pc端，后端管理系统，移动端，app，以及微信公众账号方面有丰富的项目实战经验，主要的一个技术栈为angular，vue、node.js,掌握扎实的js 基础知识，不依赖框架能手写css页面效果及动画，具备独立的项目经验，善于学习归纳和总结，渴望加入一个优秀的团队中
+        </article>
+    </p>
+
+    <p>
+        <h3>浏览器的渲染过程</h3>
+        <article>
+            1：http请求加载资源
+            2: parse 解析HTML，css
+            3：构建render tree
+            4：compute style，合成
+            5: layout 布局，repaint重绘，reflow回流
+            6：呈现页面
+        </article>
+    </p>
+
+    <p>
+        <h3>v-for循环时为什么要加key</h3>
+        <article>
+            vue虚拟DOM中，数据发生变化时候，需要找到对应的DOM进行更新，新增key可以给个唯一标识,为了高效的更新虚拟DOM
+        </article>
+    </p>
 </body>
 
 </html>

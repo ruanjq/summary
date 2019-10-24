@@ -24,6 +24,7 @@ function quickSort(arr){
 
 
 // 选择排序算法
+// 找到最小的数字，并记录下标，
 function selectSort(arr){
     for(let j = 0; j < arr.length - 1; j++){
         let min = j;
@@ -76,11 +77,11 @@ function bubbleSort(arr){
 }
 
 
-var arr = [8,7,3];
+var arr = [1,9,7,6,4,8];
 // console.log(selectSort(arr));
 // console.log(bubbleSort(arr));
 // console.log(insetSort(arr));
-console.log(quickSort(arr));
+console.log(selectSort(arr));
 // console.log(1212121);
 
 

@@ -6,43 +6,32 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
-        * {
+        *{
             margin: 0;
             padding: 0;
         }
-
-        #left {
-            float: left;
-            /*只设置浮动,不设宽度*/
-            height: 500px;
-            width: 100px;
-            background-color: #f00;
- 
-            margin-left: -100%;  
+        
+        #parent{
+            position: relative; overflow: hidden;
+            padding-left: 100px; padding-right: 100px;
+        }
+        #center{
+            float: left; position: relative;
+            height: 500px; background: gray; width: 100%;
         }
 
-        #right {
-            overflow: hidden;
-            /*触发bfc*/
-            height: 500px;
-            width: 100px; margin-left: -100px;  
-            float: right;
-            background-color: #0f0;
+        
+        #left{
+            float: left; width: 100px; height: 500px; 
+            background: red; left: -100px;
+            position: relative; margin-left: -100%;  
         }
 
-        #center {
-            height: 500px;
-            background: gray;
-            float: left;
-            width: 100%;
+        #right{
+            float: right; width: 100px; height: 500px; 
+            background: green;  position: relative;
+            margin-left: -100px; right: -100px;
         }
-
-        #parent {
-            overflow: hidden;
-            position: relative;
-          
-        }
-        #center-inner{ padding-left: 100px; padding-right: 100px;}
     </style>
 </head>
 
@@ -52,20 +41,13 @@
 
 
         <!-- 圣杯布局 -->
-        <!-- <div id="parent">
+        <div id="parent">
             <div id="center"> 中间内容自适应  </div>
             <div id="left">左列不定宽</div>
             <div id="right">右列自适应</div>
         </div>
- -->
-        <!-- 双飞燕布局 -->
-        <div id="parent">
-            <div id="center">
-                <div id="center-inner">双飞燕布局 中间内容自适应</div>
-            </div>
-            <div id="left">左列不定宽</div>
-            <div id="right">右列自适应</div>
-        </div>
+
+        
     </body>
 </body>
 
